@@ -10,11 +10,14 @@ using System.Windows.Forms;
 
 namespace Moon_X_Core
 {
-    public partial class Form1 : Form
+    public partial class MainForm : Form
     {
-        public Form1()
+        public List<App> InstalledApps = new List<App>();
+        public MainForm()
         {
             InitializeComponent();
+            App[] apps = Steam.GetInstalledGames();
+            MessageBox.Show(apps[0].Path);
         }
     }
 }
