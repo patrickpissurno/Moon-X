@@ -43,7 +43,9 @@ namespace Moon_X_Core
                         string fileData = File.ReadAllText(filePath);
                         string id = GetAcfKey(fileData, "appID");
                         App app = new App();
-                        app.Path = "steam://" + id;
+                        app.Path = "steam://rungameid/" + id;
+                        app.Name = GetAcfKey(fileData, "name");
+                        app.ImagePath = "http://cdn.akamai.steamstatic.com/steam/apps/" + id +"/header.jpg";
                         apps.Add(app);
                     }
                 }

@@ -16,8 +16,7 @@ namespace Moon_X_Core
         public MainForm()
         {
             InitializeComponent();
-            App[] apps = Steam.GetInstalledGames();
-            MessageBox.Show(apps[0].Path);
+            InstalledApps.AddRange(Steam.GetInstalledGames());
         }
     }
 }
