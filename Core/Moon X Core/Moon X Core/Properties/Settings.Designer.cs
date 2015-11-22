@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Moon_X.Properties
+namespace Moon_X_Core.Properties
 {
 
 
