@@ -23,6 +23,7 @@ namespace Moon_X
         public MainWindow()
         {
             InitializeComponent();
+            ControllerNumber.Content = "Text test";
         }
     }
 }
