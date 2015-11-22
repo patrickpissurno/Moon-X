@@ -11,5 +11,10 @@ namespace Moon_X_Core
         public string Name;
         public string Path;
         public string ImagePath;
+
+        public string Serialize()
+        {
+            return Name + "|" + Path + "|" + ImagePath + ";";
+        }
     }
 }

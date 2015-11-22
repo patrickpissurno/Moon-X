@@ -8,6 +8,16 @@
   <sprites name="sprites"/>
   <backgrounds name="background"/>
   <paths name="paths"/>
+  <scripts name="scripts">
+    <script>scripts\service_send.gml</script>
+    <script>scripts\service_receive.gml</script>
+  </scripts>
+  <objects name="objects">
+    <object>objects\o_service</object>
+  </objects>
+  <rooms name="rooms">
+    <room>rooms\room_start</room>
+  </rooms>
   <help>
     <rtf>help.rtf</rtf>
   </help>
