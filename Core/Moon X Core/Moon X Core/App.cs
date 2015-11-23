@@ -11,10 +11,13 @@ namespace Moon_X_Core
         public string Name;
         public string Path;
         public string ImagePath;
+        public string SteamId = null;
 
         public string Serialize()
         {
-            return "{\"name\":\"" + Name + "\", \"path\":\"" + Path + "\", \"imagePath\":\"" + ImagePath + "\"}";
+            string result = "{\"name\":\"" + Name + "\", \"path\":\"" + Path + "\", \"imagePath\":\"" + ImagePath + "\"";
+            result += SteamId == null ? "}" : ", \"steamId\":\"" + SteamId + "\"}";
+            return result;
         }
     }
 }

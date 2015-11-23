@@ -64,7 +64,7 @@ namespace Moon_X_Core
             switch(r)
             {
                 case "installedapps":
-                    messageQueue = "{\"type\":\"installedApps\", \"list\":[";
+                    messageQueue = "{\"type\":\"installedApps\", \"data\":[";
                     foreach (App app in MainForm.instance.InstalledApps)
                     {
                         messageQueue += app.Serialize();
