@@ -14,7 +14,7 @@ namespace Moon_X_Core
 
         public string Serialize()
         {
-            return Name + "|" + Path + "|" + ImagePath + ";";
+            return "{\"name\":\"" + Name + "\", \"path\":\"" + Path + "\", \"imagePath\":\"" + ImagePath + "\"}";
         }
     }
 }

@@ -35,11 +35,12 @@ namespace Moon_X_Core
                     while (true)
                     {
                         bytesReceived = stream.Read(buffer, 0, BUFFER_SIZE);
-                        RequestHandler(Encoding.ASCII.GetString(buffer, 0, bytesReceived));
+                        RequestHandler(Encoding.UTF8.GetString(buffer, 0, bytesReceived));
                         if (bytesReceived != BUFFER_SIZE) break;
                     }
 
-                    var response = Encoding.ASCII.GetBytes(messageQueue);
+                    var response = Encoding.UTF8.GetBytes(messageQueue);
+                    Console.WriteLine("\n" + messageQueue + "\n");
                     messageQueue = "";
 
                     stream.Write(response, 0, response.Length);
@@ -60,15 +61,23 @@ namespace Moon_X_Core
         {
             string r = request.Trim().ToLowerInvariant();
             r = r.Substring(r.IndexOf("$") + 1, r.LastIndexOf("$") - r.IndexOf("$") - 1);
-            if (r.Equals("installedapps"))
+            switch(r)
             {
-                foreach (App app in MainForm.instance.InstalledApps)
-                {
-                    messageQueue += app.Serialize();
-                }
+                case "installedapps":
+                    messageQueue = "{\"type\":\"installedApps\", \"list\":[";
+                    foreach (App app in MainForm.instance.InstalledApps)
+                    {
+                        messageQueue += app.Serialize();
+                        if (app != MainForm.instance.InstalledApps[MainForm.instance.InstalledApps.Count - 1])
+                            messageQueue += ", ";
+                    }
+                    messageQueue += "]}";
+                    //messageQueue += "}";
+                    break;
+                default:
+                    messageQueue = "Unknow Service";
+                    break;
             }
-            else
-                messageQueue = "Unknow Service";
             //MainForm.instance.ShowMessage(request);
         }
     }
