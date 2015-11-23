@@ -34,7 +34,7 @@ sock = -4;
 if ( Result &lt; 0 ) {
    network_destroy( Socket );
 }
-alarm[0] = 20;
+alarm[0] = 25;
 </string>
           </argument>
         </arguments>

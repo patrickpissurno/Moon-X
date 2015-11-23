@@ -49,7 +49,7 @@ global.installedAppsCount = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>show_message(ds_map_find_value(global.installedApps[0],"name"));
+            <string>show_message(global.installedApps[0,0]);
 </string>
           </argument>
         </arguments>
