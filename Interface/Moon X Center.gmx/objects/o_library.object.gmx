@@ -74,7 +74,7 @@ else if(keyboard_check_released(vk_right) &amp;&amp; selectedGameId &lt; global.
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if(global.installedAppsLoaded == global.installedAppsCount &amp;&amp; global.installedAppsCount &gt; 0)
+            <string>if(global.installedAppsCount &gt; 0)
 {
     var spr = global.installedApps[selectedGameId,3];
     draw_sprite(spr,0,room_width/2 - sprite_get_width(spr)/2, room_height/2 - sprite_get_height(spr)/2);

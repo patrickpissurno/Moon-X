@@ -35,7 +35,7 @@ if ( Result &lt; 0 ) {
    network_destroy( Socket );
 }
 alarm[0] = 25;
-alarm[1] = alarm[0] + 60;
+//alarm[1] = alarm[0] + 60;
 </string>
           </argument>
         </arguments>
@@ -58,11 +58,11 @@ alarm[1] = alarm[0] + 60;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if(global.installedAppsLoaded &lt; global.installedAppsCount)
+            <string>/*if(global.installedAppsLoaded &lt; global.installedAppsCount)
 {
     global.installedAppsLoaded++;
     alarm[1]=60;
-}
+}*/
 </string>
           </argument>
         </arguments>
@@ -109,7 +109,7 @@ alarm[1] = alarm[0] + 60;
           <argument>
             <kind>1</kind>
             <string>var n_id = ds_map_find_value(async_load, "id");
-var isAppImage = true;
+/*var isAppImage = true;
 if(global.installedAppsCount &gt; 0)
 {
     for(var i=0; i&lt;global.installedAppsCount; i++)
@@ -129,7 +129,7 @@ if(global.installedAppsCount &gt; 0)
 else
     isAppImage = false;
 if(!isAppImage)
-{
+{*/
     if(n_id == Socket){
         var t = ds_map_find_value(async_load, "type");
         socketlist = ds_list_create();
@@ -141,7 +141,7 @@ if(!isAppImage)
     var t_buffer = ds_map_find_value(async_load, "buffer"); 
     var cmd_type = buffer_read(t_buffer, buffer_string);
     service_receive(cmd_type);
-}
+//}
 </string>
           </argument>
         </arguments>

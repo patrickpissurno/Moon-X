@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Moon_X_Core
 {
@@ -37,6 +39,8 @@ namespace Moon_X_Core
             {
                 if (Directory.Exists(path + @"\steamapps"))
                 {
+                    string imageDirectory = Path.Combine(Application.StartupPath, @"Resources\BoxArt\");
+                    Directory.CreateDirectory(imageDirectory);
                     string[] filePaths = Directory.GetFiles(path + @"\steamapps", "*.acf");
                     foreach (string filePath in filePaths)
                     {
@@ -45,7 +49,22 @@ namespace Moon_X_Core
                         App app = new App();
                         app.Path = "steam://rungameid/" + id;
                         app.Name = GetAcfKey(fileData, "name");
-                        app.ImagePath = "http://cdn.akamai.steamstatic.com/steam/apps/" + id +"/header.jpg";
+                        app.ImagePath = "http://cdn.akamai.steamstatic.com/steam/apps/" + id + "/header.jpg";
+                        try
+                        {
+                            using (WebClient webClient = new WebClient())
+                            {
+                                string targetPath = Path.Combine(imageDirectory, id + ".jpg");
+                                if(!File.Exists(targetPath))
+                                    webClient.DownloadFile(app.ImagePath, targetPath);
+                                app.ImagePath = targetPath;
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine("\nError downloading app image:\n" + ex.Message + "\n");
+                        }
+                        
                         app.SteamId = id;
                         apps.Add(app);
                     }

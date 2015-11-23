@@ -1,5 +1,6 @@
 var map, list = ds_list_create();
-map = json_decode(argument0);
+var jsonData = string_replace_all(argument0, "\", "/");
+map = json_decode(jsonData);
 switch(ds_map_find_value(map, "type"))
 {
     case "installedApps":
