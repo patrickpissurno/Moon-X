@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -80,6 +81,22 @@ namespace Moon_X_Core
         {
             int pos = acf.IndexOf("\"", acf.IndexOf(key) + key.Length + 1);
             return acf.Substring(pos + 1, acf.IndexOf("\"", pos + 1) - pos - 1);
+        }
+
+        public static void Start()
+        {
+            string path = GetDirectory();
+            if(path != null)
+            {
+                ProcessStartInfo p = new ProcessStartInfo(Path.Combine(path, "Steam.exe"), "-silent");
+                p.WindowStyle = ProcessWindowStyle.Minimized;
+                Process.Start(p);
+            }
+        }
+
+        public static void SetBusy()
+        {
+            Process.Start("steam://friends/status/busy");
         }
     }
 }
