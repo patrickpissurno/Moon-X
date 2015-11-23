@@ -54,6 +54,8 @@ else if(keyboard_check_released(vk_right) &amp;&amp; selectedGameId &lt; global.
     selectedGameId ++;
 if(keyboard_check_released(vk_enter))
     service_send("runapp=" + global.installedApps[selectedGameId, 1]);
+if(keyboard_check_released(vk_escape))
+    game_end();
 </string>
           </argument>
         </arguments>
@@ -79,7 +81,7 @@ if(keyboard_check_released(vk_enter))
             <string>if(global.installedAppsCount &gt; 0)
 {
     var spr = global.installedApps[selectedGameId,3];
-    draw_sprite(spr,0,room_width/2 - sprite_get_width(spr)/2, room_height/2 - sprite_get_height(spr)/2);
+    draw_sprite(spr,0,view_wview/2 - sprite_get_width(spr)/2, view_hview/2 - sprite_get_height(spr)/2);
 }
 else
     draw_text(0,0, "Loading Steam Data: " + string(global.installedAppsLoaded) + "/" + string(global.installedAppsCount));

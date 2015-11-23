@@ -40,5 +40,10 @@ namespace Moon_X_Core
         {
             System.Diagnostics.Process.Start(Path.Combine(Application.StartupPath, "Moon X Center.exe"));
         }
+
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            System.Diagnostics.Process.Start("steam://ExitSteam");
+        }
     }
 }

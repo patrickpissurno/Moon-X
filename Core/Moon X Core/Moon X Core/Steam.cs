@@ -98,5 +98,15 @@ namespace Moon_X_Core
         {
             Process.Start("steam://friends/status/busy");
         }
+
+        public static void Stop()
+        {
+            Process.Start("steam://ExitSteam");
+        }
+
+        public static void BigPicture()
+        {
+            Process.Start("steam://open/bigpicture");
+        }
     }
 }

@@ -43,14 +43,15 @@
             this.MaximumSize = new System.Drawing.Size(1, 1);
             this.MinimizeBox = false;
             this.Name = "MainForm";
+            this.Opacity = 0D;
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Moon X Core";
             this.TopMost = true;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.ResumeLayout(false);
-            this.Visible = false;
-            this.Opacity = 0;
+
         }
 
         #endregion
