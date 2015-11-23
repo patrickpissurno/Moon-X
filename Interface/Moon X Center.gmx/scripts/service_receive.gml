@@ -9,6 +9,7 @@ switch(ds_map_find_value(map, "type"))
             global.installedApps[global.installedAppsCount, 0] = ds_map_find_value(ds_list_find_value(list, i), "name");
             global.installedApps[global.installedAppsCount, 1] = ds_map_find_value(ds_list_find_value(list, i), "path");
             global.installedApps[global.installedAppsCount, 2] = ds_map_find_value(ds_list_find_value(list, i), "imagePath");
+            global.installedApps[global.installedAppsCount,3] = sprite_add(global.installedApps[global.installedAppsCount,2], 0, false, false, 0, 0);
             global.installedAppsCount++;
         }
         break;

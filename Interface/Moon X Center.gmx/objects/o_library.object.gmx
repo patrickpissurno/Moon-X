@@ -25,23 +25,13 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//Create the client socket and connect to the raw socket server:
-Socket = network_create_socket( network_socket_tcp );
-var Result = network_connect_raw( Socket , "127.0.0.1" , 28423 );
-sock = -4;
- 
-//If we could not connect, destroy the network:
-if ( Result &lt; 0 ) {
-   network_destroy( Socket );
-}
-alarm[0] = 25;
-alarm[1] = alarm[0] + 60;
+            <string>selectedGameId = 0;
 </string>
           </argument>
         </arguments>
       </action>
     </event>
-    <event eventtype="2" enumb="1">
+    <event eventtype="3" enumb="0">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -58,90 +48,39 @@ alarm[1] = alarm[0] + 60;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if(global.installedAppsLoaded &lt; global.installedAppsCount)
+            <string>if(keyboard_check_released(vk_left) &amp;&amp; selectedGameId &gt; 0)
+    selectedGameId --;
+else if(keyboard_check_released(vk_right) &amp;&amp; selectedGameId &lt; global.installedAppsCount - 1)
+    selectedGameId ++;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="64">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if(global.installedAppsLoaded == global.installedAppsCount &amp;&amp; global.installedAppsCount &gt; 0)
 {
-    global.installedAppsLoaded++;
-    alarm[1]=60;
-}
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="2" enumb="0">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>service_send("InstalledApps");
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="7" enumb="68">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>var n_id = ds_map_find_value(async_load, "id");
-var isAppImage = true;
-if(global.installedAppsCount &gt; 0)
-{
-    for(var i=0; i&lt;global.installedAppsCount; i++)
-    {
-        if(ds_map_find_value(async_load, "id") == global.installedApps[i,3])
-        {
-            if (ds_map_find_value(async_load, "status") &gt;= 0)
-            {
-               global.installedAppsLoaded ++;
-            }
-            isAppImage = false;
-            break;
-        }
-    }
-    isAppImage = !isAppImage;
+    var spr = global.installedApps[selectedGameId,3];
+    draw_sprite(spr,0,room_width/2 - sprite_get_width(spr)/2, room_height/2 - sprite_get_height(spr)/2);
 }
 else
-    isAppImage = false;
-if(!isAppImage)
-{
-    if(n_id == Socket){
-        var t = ds_map_find_value(async_load, "type");
-        socketlist = ds_list_create();
-        if(t == network_type_connect){
-            sock = ds_map_find_value(async_load, "socket");
-            ds_list_add(socketlist, sock);
-        }
-    }
-    var t_buffer = ds_map_find_value(async_load, "buffer"); 
-    var cmd_type = buffer_read(t_buffer, buffer_string);
-    service_receive(cmd_type);
-}
+    draw_text(0,0, "Loading Steam Data: " + string(global.installedAppsLoaded) + "/" + string(global.installedAppsCount));
 </string>
           </argument>
         </arguments>
