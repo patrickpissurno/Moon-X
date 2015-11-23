@@ -52,6 +52,8 @@
     selectedGameId --;
 else if(keyboard_check_released(vk_right) &amp;&amp; selectedGameId &lt; global.installedAppsCount - 1)
     selectedGameId ++;
+if(keyboard_check_released(vk_enter))
+    service_send("runapp=" + global.installedApps[selectedGameId, 1]);
 </string>
           </argument>
         </arguments>

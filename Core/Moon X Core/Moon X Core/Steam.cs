@@ -42,6 +42,7 @@ namespace Moon_X_Core
                     string imageDirectory = Path.Combine(Application.StartupPath, @"Resources\BoxArt\");
                     Directory.CreateDirectory(imageDirectory);
                     string[] filePaths = Directory.GetFiles(path + @"\steamapps", "*.acf");
+
                     foreach (string filePath in filePaths)
                     {
                         string fileData = File.ReadAllText(filePath);

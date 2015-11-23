@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,6 +28,10 @@ namespace Moon_X_Core
         public void ShowMessage(string str)
         {
             MessageBox.Show(str);
+        }
+        public void RestartInterface()
+        {
+            System.Diagnostics.Process.Start(Path.Combine(Application.StartupPath, "Moon X Center.exe"));
         }
     }
 }

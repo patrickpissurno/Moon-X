@@ -14,6 +14,9 @@ switch(ds_map_find_value(map, "type"))
             global.installedAppsCount++;
         }
         break;
+    case "exit":
+        game_end();
+        break;
 }
 ds_list_destroy(list);
 ds_map_destroy(map);
